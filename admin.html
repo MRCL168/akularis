@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin • GitHub File CMS Pro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="site-header container">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">GP</span>
+      <div>
+        <strong>GitHub File CMS Pro</strong>
+        <small>OAuth + media manager tanpa database</small>
+      </div>
+    </a>
+    <nav class="site-nav">
+      <a href="index.html">Lihat Situs</a>
+      <a href="#settingsCard">Koneksi</a>
+      <a href="#editorCard">Editor</a>
+      <a href="#mediaCard">Media</a>
+    </nav>
+  </header>
+
+  <main class="container admin-layout section-gap">
+    <section class="admin-main">
+      <div class="dashboard-grid dashboard-grid-5">
+        <div class="card stat-card"><small>Total post</small><strong id="adminStatPosts">0</strong></div>
+        <div class="card stat-card"><small>Published</small><strong id="adminStatPublished">0</strong></div>
+        <div class="card stat-card"><small>Draft</small><strong id="adminStatDraft">0</strong></div>
+        <div class="card stat-card"><small>Kategori</small><strong id="adminStatCategories">0</strong></div>
+        <div class="card stat-card"><small>Media</small><strong id="adminStatMedia">0</strong></div>
+      </div>
+
+      <section id="settingsCard" class="card form-card">
+        <div class="card-header">
+          <div>
+            <h2>Koneksi GitHub + workflow publish</h2>
+            <p>Gunakan OAuth untuk login GitHub, atau token manual sebagai fallback untuk uji lokal.</p>
+          </div>
+          <div class="status-stack">
+            <span id="connectionBadge" class="status-badge">Belum tersambung</span>
+            <span id="authBadge" class="status-badge">Belum login</span>
+          </div>
+        </div>
+
+        <div class="inline-toggle">
+          <label class="switch">
+            <input id="demoMode" type="checkbox" />
+            <span></span>
+          </label>
+          <div>
+            <strong>Demo Mode</strong>
+            <p>Seluruh data disimpan ke browser, termasuk media berbasis data URL.</p>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <label>
+            <span>Owner</span>
+            <input id="ghOwner" type="text" placeholder="contoh: mrcl16888" />
+          </label>
+          <label>
+            <span>Repository</span>
+            <input id="ghRepo" type="text" placeholder="contoh: blog-cms" />
+          </label>
+          <label>
+            <span>Base branch</span>
+            <input id="ghBaseBranch" type="text" value="main" />
+          </label>
+          <label>
+            <span>Mode publish</span>
+            <select id="ghPublishMode">
+              <option value="direct">Direct publish</option>
+              <option value="pr">Review via Pull Request</option>
+            </select>
+          </label>
+          <label>
+            <span>Working branch</span>
+            <input id="ghWorkingBranch" type="text" value="cms-draft" />
+          </label>
+          <label>
+            <span>OAuth scope</span>
+            <input id="oauthScope" type="text" value="repo read:user" />
+          </label>
+        </div>
+
+        <div class="grid-2 section-gap-tight">
+          <label>
+            <span>GitHub OAuth Client ID</span>
+            <input id="oauthClientId" type="text" placeholder="Iv1.xxxxxxxxxxxxxxxx" />
+          </label>
+          <label>
+            <span>OAuth Proxy URL</span>
+            <input id="oauthProxyUrl" type="text" placeholder="https://cms-oauth.example.workers.dev" />
+          </label>
+        </div>
+
+        <div class="oauth-card inset-panel">
+          <div>
+            <strong>Status login GitHub</strong>
+            <p class="help-text">Login akan redirect ke GitHub lalu kembali ke halaman admin ini.</p>
+          </div>
+          <div id="identityCard" class="identity-card">
+            <div class="identity-avatar">GH</div>
+            <div>
+              <strong id="identityName">Belum login</strong>
+              <p id="identityMeta" class="help-text">Gunakan OAuth untuk mendapatkan token secara aman lewat endpoint serverless.</p>
+            </div>
+          </div>
+          <div class="button-row">
+            <button class="btn btn-primary" id="oauthLoginBtn">Login dengan GitHub</button>
+            <button class="btn btn-secondary" id="refreshIdentityBtn">Refresh Identitas</button>
+            <button class="btn btn-secondary" id="logoutGithubBtn">Logout</button>
+          </div>
+        </div>
+
+        <details class="manual-token-wrap">
+          <summary>Fallback: token manual</summary>
+          <label>
+            <span>Personal Access Token</span>
+            <input id="ghToken" type="password" placeholder="Gunakan hanya bila belum memakai OAuth" />
+          </label>
+        </details>
+
+        <div class="button-row">
+          <button class="btn btn-primary" id="saveConnectionBtn">Simpan Pengaturan</button>
+          <button class="btn btn-secondary" id="loadRepoBtn">Muat Data</button>
+          <button class="btn btn-secondary" id="syncAllBtn">Sinkronkan Semua</button>
+          <button class="btn btn-secondary" id="createPrBtn">Buat / Buka Pull Request</button>
+        </div>
+
+        <p class="help-text">Untuk mode PR, perubahan konten akan ditulis ke working branch lebih dulu lalu Anda review di GitHub sebelum merge.</p>
+      </section>
+
+      <section class="card form-card">
+        <div class="card-header">
+          <div>
+            <h2>Pengaturan situs</h2>
+            <p>Judul, URL situs, hero, footer, dan pagination.</p>
+          </div>
+          <div class="status-stack">
+            <span id="autosaveBadge" class="status-badge">Autosave belum aktif</span>
+            <small id="autosaveText" class="help-text">Draft editor akan disimpan otomatis di browser.</small>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <label><span>Judul situs</span><input id="siteTitle" type="text" /></label>
+          <label><span>Tagline</span><input id="siteTagline" type="text" /></label>
+          <label><span>URL situs</span><input id="siteUrl" type="text" placeholder="https://username.github.io/nama-repo" /></label>
+          <label><span>Locale</span><input id="siteLanguage" type="text" placeholder="id-ID" /></label>
+          <label><span>Judul hero</span><input id="heroTitle" type="text" /></label>
+          <label><span>Jumlah post per halaman</span><input id="postsPerPage" type="number" min="1" max="24" /></label>
+        </div>
+
+        <label><span>Deskripsi hero</span><textarea id="heroDescription" rows="4"></textarea></label>
+        <label><span>Teks footer</span><input id="footerText" type="text" /></label>
+
+        <div class="inline-toggle">
+          <label class="switch"><input id="showFeaturedOnlyOnTop" type="checkbox" /><span></span></label>
+          <div>
+            <strong>Tampilkan featured post di hero section</strong>
+            <p>Artikel featured pertama akan ditonjolkan di halaman depan.</p>
+          </div>
+        </div>
+
+        <div class="button-row">
+          <button class="btn btn-primary" id="saveSiteBtn">Simpan Pengaturan Situs</button>
+          <button class="btn btn-secondary" id="exportBackupBtn">Export Backup</button>
+          <label class="btn btn-secondary file-button">Import Backup<input id="importBackupInput" type="file" accept="application/json" hidden /></label>
+        </div>
+      </section>
+
+      <section id="editorCard" class="card form-card">
+        <div class="card-header">
+          <div>
+            <h2>Editor artikel</h2>
+            <p>Markdown editor dengan preview live, autosave lokal, dan snippet cepat.</p>
+          </div>
+          <div class="button-row compact">
+            <button class="btn btn-secondary" id="newPostBtn">Post Baru</button>
+            <button class="btn btn-secondary" id="duplicatePostBtn">Duplikat</button>
+            <button class="btn btn-primary" id="savePostBtn">Simpan Post</button>
+          </div>
+        </div>
+
+        <input id="postId" type="hidden" />
+
+        <div class="grid-2">
+          <label><span>Judul</span><input id="postTitle" type="text" placeholder="Judul artikel" /></label>
+          <label><span>Slug</span><input id="postSlug" type="text" placeholder="slug-artikel" /></label>
+          <label><span>Penulis</span><input id="postAuthor" type="text" placeholder="Nama penulis" /></label>
+          <label><span>Kategori</span><input id="postCategory" type="text" placeholder="Panduan" /></label>
+          <label><span>Status</span><select id="postStatus"><option value="draft">Draft</option><option value="published">Published</option></select></label>
+          <label><span>Tag (pisahkan dengan koma)</span><input id="postTags" type="text" placeholder="github, cms, tutorial" /></label>
+        </div>
+
+        <label><span>Excerpt</span><textarea id="postExcerpt" rows="3" placeholder="Ringkasan artikel"></textarea></label>
+
+        <div class="grid-2">
+          <label><span>Cover image</span><input id="postCoverImage" type="text" placeholder="assets/uploads/nama-file.jpg" /></label>
+          <label><span>Upload cover image</span><input id="coverUpload" type="file" accept="image/*" /></label>
+        </div>
+        <div id="coverPreview" class="cover-preview hidden"></div>
+
+        <div class="grid-2">
+          <label><span>SEO title</span><input id="postSeoTitle" type="text" /></label>
+          <label><span>SEO description</span><input id="postSeoDescription" type="text" /></label>
+        </div>
+
+        <div class="inline-toggle">
+          <label class="switch"><input id="postFeatured" type="checkbox" /><span></span></label>
+          <div>
+            <strong>Featured post</strong>
+            <p>Artikel featured akan diprioritaskan di hero section halaman depan.</p>
+          </div>
+        </div>
+
+        <div class="card inset-panel seo-preview-wrap"><div id="seoPreview" class="seo-preview"></div></div>
+
+        <div class="card inset-panel editor-toolbar-wrap">
+          <div class="card-header compact-header">
+            <div>
+              <strong>Toolbar Markdown</strong>
+              <p class="help-text">Pakai media manager untuk copy URL atau sisipkan gambar ke editor.</p>
+            </div>
+            <div id="editorViewSwitch" class="segmented-control">
+              <button type="button" class="active" data-view="split">Split</button>
+              <button type="button" data-view="write">Write</button>
+              <button type="button" data-view="preview">Preview</button>
+            </div>
+          </div>
+
+          <div class="markdown-tools">
+            <button type="button" class="btn btn-secondary" data-md-action="h2">H2</button>
+            <button type="button" class="btn btn-secondary" data-md-action="h3">H3</button>
+            <button type="button" class="btn btn-secondary" data-md-action="bold">Bold</button>
+            <button type="button" class="btn btn-secondary" data-md-action="link">Link</button>
+            <button type="button" class="btn btn-secondary" data-md-action="code">Code</button>
+            <button type="button" class="btn btn-secondary" data-md-action="quote">Quote</button>
+            <button type="button" class="btn btn-secondary" data-md-action="list">List</button>
+            <button type="button" class="btn btn-secondary" data-md-action="image">Image</button>
+          </div>
+
+          <div id="editorWorkbench" class="editor-workbench split">
+            <label class="editor-label editor-pane write-pane">
+              <span>Konten Markdown</span>
+              <textarea id="postContent" rows="18" placeholder="# Judul\n\nTulis artikel di sini..."></textarea>
+            </label>
+            <div class="editor-pane preview-pane">
+              <span>Preview live</span>
+              <div id="markdownPreview" class="preview-surface prose-block"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="button-row">
+          <button class="btn btn-secondary" id="restoreAutosaveBtn">Pulihkan Autosave</button>
+          <button class="btn btn-secondary" id="clearAutosaveBtn">Hapus Autosave</button>
+          <button class="btn btn-secondary" id="uploadImageBtn">Upload Cover</button>
+          <button class="btn btn-secondary" id="deletePostBtn">Hapus Post</button>
+        </div>
+      </section>
+
+      <section id="mediaCard" class="card form-card">
+        <div class="card-header">
+          <div>
+            <h2>Media manager</h2>
+            <p>Upload banyak file, edit metadata, sisipkan ke Markdown, dan hapus file dari repository.</p>
+          </div>
+          <div class="status-stack">
+            <span id="mediaCountBadge" class="status-badge">0 item</span>
+            <small id="mediaUsageHint" class="help-text">Pilih media untuk melihat aksi cepat.</small>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <label><span>Folder upload</span><input id="mediaFolder" type="text" value="assets/uploads/2026/03" /></label>
+          <label><span>Cari media</span><input id="mediaSearch" type="search" placeholder="nama file, alt text, caption" /></label>
+        </div>
+
+        <div class="button-row">
+          <label class="btn btn-secondary file-button">Pilih file media<input id="mediaUploadInput" type="file" multiple hidden /></label>
+          <button class="btn btn-primary" id="uploadMediaBtn">Upload ke Media Library</button>
+          <button class="btn btn-secondary" id="saveMediaMetaBtn">Simpan Metadata</button>
+          <button class="btn btn-secondary" id="refreshMediaBtn">Refresh Media</button>
+        </div>
+
+        <div class="media-layout">
+          <aside class="media-sidebar inset-panel">
+            <div id="selectedMediaPreview" class="selected-media-preview empty-state small-empty">Belum ada media dipilih.</div>
+            <input id="mediaMetaId" type="hidden" />
+            <label><span>Path</span><input id="mediaMetaPath" type="text" readonly /></label>
+            <label><span>Alt text</span><input id="mediaMetaAlt" type="text" placeholder="Deskripsi gambar" /></label>
+            <label><span>Caption</span><textarea id="mediaMetaCaption" rows="4" placeholder="Caption atau catatan penggunaan"></textarea></label>
+            <div class="button-row">
+              <button class="btn btn-secondary" id="copyMediaUrlBtn">Copy URL</button>
+              <button class="btn btn-secondary" id="copyMediaMarkdownBtn">Copy Markdown</button>
+            </div>
+            <div class="button-row">
+              <button class="btn btn-secondary" id="useMediaAsCoverBtn">Jadikan Cover</button>
+              <button class="btn btn-secondary" id="insertMediaToEditorBtn">Sisipkan ke Editor</button>
+              <button class="btn btn-secondary" id="deleteMediaBtn">Hapus Media</button>
+            </div>
+          </aside>
+          <div id="mediaGrid" class="media-grid"></div>
+        </div>
+      </section>
+
+      <section class="card form-card">
+        <div class="card-header">
+          <div>
+            <h2>Daftar artikel</h2>
+            <p>Cari, edit, atau hapus artikel yang sudah ada.</p>
+          </div>
+          <div class="toolbar toolbar-stacked">
+            <input id="adminSearch" type="search" placeholder="Cari judul, slug, kategori, tag" />
+          </div>
+        </div>
+        <div id="postList" class="post-list"></div>
+      </section>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="assets/js/utils.js"></script>
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>

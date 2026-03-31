@@ -1,0 +1,66 @@
+[
+  {
+    "id": "1",
+    "slug": "mulai-dengan-cms-advanced",
+    "title": "Mulai dengan CMS Pro",
+    "excerpt": "Cara cepat menjalankan website dinamis berbasis file dengan editor Markdown, autosave, dan workflow PR.",
+    "content": "# Mulai dengan CMS Pro\n\nCMS berbasis file cocok untuk website statis yang tetap ingin punya panel admin ringan. Konten disimpan sebagai file JSON di repository, lalu halaman website membacanya secara langsung.\n\n## Yang baru di versi pro\n\n- Editor Markdown dengan live preview\n- Autosave draft lokal\n- Export / import backup\n- Workflow review via Pull Request\n- Generate sitemap, RSS, robots, dan search index\n\n> Semua ini tetap berjalan tanpa database.\n\n## Alur kerja yang disarankan\n\n1. Edit artikel dari panel admin\n2. Simpan ke working branch\n3. Buat Pull Request\n4. Review lalu merge ke branch utama\n",
+    "category": "Panduan",
+    "tags": [
+      "github",
+      "cms",
+      "markdown",
+      "workflow"
+    ],
+    "coverImage": "assets/img/placeholder.svg",
+    "status": "published",
+    "featured": true,
+    "author": "Admin",
+    "seoTitle": "Mulai dengan CMS Pro",
+    "seoDescription": "Panduan awal menggunakan GitHub File CMS Pro di GitHub Pages.",
+    "publishedAt": "2026-03-31T09:00:00.000Z",
+    "updatedAt": "2026-03-31T09:00:00.000Z"
+  },
+  {
+    "id": "2",
+    "slug": "review-via-pull-request",
+    "title": "Review perubahan lewat Pull Request",
+    "excerpt": "Gunakan working branch agar perubahan konten bisa direview sebelum tayang di branch utama.",
+    "content": "# Review perubahan lewat Pull Request\n\nUntuk website yang dikelola bersama tim, workflow Pull Request jauh lebih aman dibanding commit langsung ke branch utama.\n\n## Kenapa berguna\n\n- Perubahan bisa direview lebih dulu\n- Ada approval flow yang jelas\n- Riwayat revisi tetap rapi\n\n## Cara pakai\n\n- Ubah mode publish ke `Review via Pull Request`\n- Tentukan working branch, misalnya `cms-draft`\n- Simpan perubahan\n- Klik tombol **Buat / Buka Pull Request**\n",
+    "category": "Workflow",
+    "tags": [
+      "pull request",
+      "workflow",
+      "github api"
+    ],
+    "coverImage": "assets/img/placeholder.svg",
+    "status": "published",
+    "featured": false,
+    "author": "Admin",
+    "seoTitle": "Review perubahan lewat Pull Request",
+    "seoDescription": "Workflow PR untuk mengelola konten GitHub Pages tanpa database.",
+    "publishedAt": "2026-03-30T10:00:00.000Z",
+    "updatedAt": "2026-03-30T10:00:00.000Z"
+  },
+  {
+    "id": "3",
+    "slug": "editor-markdown-dengan-autosave",
+    "title": "Editor Markdown dengan autosave",
+    "excerpt": "Tulis artikel dengan Markdown, lihat preview langsung, lalu pulihkan draft lokal kapan saja.",
+    "content": "# Editor Markdown dengan autosave\n\nPanel admin sekarang menyimpan draft editor ke browser secara otomatis. Ini membantu saat tab tertutup tidak sengaja atau koneksi terputus.\n\n## Fitur editor\n\n- Write / Preview / Split view\n- Toolbar snippet cepat\n- SEO preview\n- Upload gambar ke repo lalu sisipkan ke Markdown\n",
+    "category": "Fitur",
+    "tags": [
+      "markdown",
+      "autosave",
+      "editor"
+    ],
+    "coverImage": "assets/img/placeholder.svg",
+    "status": "draft",
+    "featured": false,
+    "author": "Admin",
+    "seoTitle": "Editor Markdown dengan autosave",
+    "seoDescription": "Penjelasan editor Markdown dan autosave pada GitHub File CMS Pro.",
+    "publishedAt": "2026-03-29T11:30:00.000Z",
+    "updatedAt": "2026-03-29T11:30:00.000Z"
+  }
+]

@@ -1,0 +1,31 @@
+[
+  {
+    "title": "Mulai dengan CMS Pro",
+    "slug": "mulai-dengan-cms-advanced",
+    "url": "https://username.github.io/repository/post.html?slug=mulai-dengan-cms-advanced",
+    "excerpt": "Cara cepat menjalankan website dinamis berbasis file dengan editor Markdown, autosave, dan workflow PR.",
+    "category": "Panduan",
+    "tags": [
+      "github",
+      "cms",
+      "markdown",
+      "workflow"
+    ],
+    "publishedAt": "2026-03-31T09:00:00.000Z",
+    "updatedAt": "2026-03-31T09:00:00.000Z"
+  },
+  {
+    "title": "Review perubahan lewat Pull Request",
+    "slug": "review-via-pull-request",
+    "url": "https://username.github.io/repository/post.html?slug=review-via-pull-request",
+    "excerpt": "Gunakan working branch agar perubahan konten bisa direview sebelum tayang di branch utama.",
+    "category": "Workflow",
+    "tags": [
+      "pull request",
+      "workflow",
+      "github api"
+    ],
+    "publishedAt": "2026-03-30T10:00:00.000Z",
+    "updatedAt": "2026-03-30T10:00:00.000Z"
+  }
+]

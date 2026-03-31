@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#0f172a"/>
+  <rect x="60" y="60" width="1080" height="510" rx="28" fill="#111827" stroke="#334155"/>
+  <circle cx="170" cy="150" r="34" fill="#38bdf8"/>
+  <rect x="230" y="120" width="360" height="26" rx="8" fill="#e5e7eb"/>
+  <rect x="230" y="164" width="230" height="18" rx="6" fill="#94a3b8"/>
+  <rect x="120" y="250" width="960" height="28" rx="10" fill="#1e293b"/>
+  <rect x="120" y="304" width="860" height="28" rx="10" fill="#1e293b"/>
+  <rect x="120" y="358" width="900" height="28" rx="10" fill="#1e293b"/>
+  <rect x="120" y="442" width="220" height="54" rx="16" fill="#38bdf8"/>
+  <rect x="366" y="442" width="220" height="54" rx="16" fill="#1e293b" stroke="#334155"/>
+  <text x="120" y="540" fill="#94a3b8" font-family="Arial, sans-serif" font-size="28">GitHub File CMS Pro</text>
+</svg>

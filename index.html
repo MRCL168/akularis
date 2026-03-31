@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GitHub File CMS Pro</title>
+  <meta name="description" content="CMS tanpa database untuk GitHub Pages" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="site-header container">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">GF</span>
+      <div>
+        <strong id="brandTitle">GitHub File CMS Pro</strong>
+        <small id="brandTagline">CMS tanpa database untuk GitHub Pages</small>
+      </div>
+    </a>
+    <nav class="site-nav">
+      <a href="index.html">Beranda</a>
+      <a href="admin.html">Admin</a>
+      <a href="#postsSection">Artikel</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero container card">
+      <div class="hero-copy">
+        <span class="pill">Static • File-based • GitHub Pages • Markdown</span>
+        <h1 id="heroTitle">Bangun website dinamis tanpa database</h1>
+        <p id="heroDescription">Konten disimpan sebagai file JSON di repository GitHub dan dapat dikelola dari panel admin modern.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#postsSection">Lihat Artikel</a>
+          <a class="btn btn-secondary" href="admin.html">Masuk Admin</a>
+        </div>
+      </div>
+      <div class="hero-panel card inset-panel">
+        <div class="stats-grid">
+          <div>
+            <small>Total post</small>
+            <strong id="statPosts">0</strong>
+          </div>
+          <div>
+            <small>Published</small>
+            <strong id="statPublished">0</strong>
+          </div>
+          <div>
+            <small>Kategori</small>
+            <strong id="statCategories">0</strong>
+          </div>
+          <div>
+            <small>Featured</small>
+            <strong id="statFeatured">0</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section-gap" id="postsSection">
+      <div class="section-head">
+        <div>
+          <h2>Artikel terbaru</h2>
+          <p>Konten published akan tampil otomatis di frontend dan masuk ke sitemap / RSS saat disinkronkan dari admin.</p>
+        </div>
+        <div class="toolbar toolbar-stacked">
+          <input id="searchInput" type="search" placeholder="Cari judul, kategori, tag..." />
+          <select id="categoryFilter">
+            <option value="all">Semua kategori</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="featuredWrap"></div>
+      <div id="postsGrid" class="posts-grid"></div>
+      <div id="pagination" class="pagination"></div>
+      <div id="emptyState" class="empty-state hidden">Belum ada artikel publish.</div>
+    </section>
+  </main>
+
+  <footer class="site-footer container">
+    <p id="footerText">Dibuat dengan GitHub File CMS Pro</p>
+  </footer>
+
+  <script src="assets/js/utils.js"></script>
+  <script src="assets/js/site.js"></script>
+</body>
+</html>

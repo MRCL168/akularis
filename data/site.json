@@ -1,0 +1,11 @@
+{
+  "siteTitle": "GitHub File CMS Pro",
+  "siteTagline": "CMS tanpa database untuk GitHub Pages",
+  "siteUrl": "https://username.github.io/repository",
+  "language": "id-ID",
+  "heroTitle": "Bangun website dinamis tanpa database",
+  "heroDescription": "Konten disimpan sebagai file JSON di repository GitHub. Cocok untuk blog, company profile, dokumentasi, landing page konten, dan microsite.",
+  "postsPerPage": 6,
+  "footerText": "Dibuat dengan GitHub File CMS Pro",
+  "showFeaturedOnlyOnTop": true
+}

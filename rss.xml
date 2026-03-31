@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+  <title>GitHub File CMS Pro</title>
+  <link>https://username.github.io/repository/</link>
+  <description>CMS tanpa database untuk GitHub Pages</description>
+  <language>id-ID</language>
+  <item>
+    <title>Mulai dengan CMS Pro</title>
+    <link>https://username.github.io/repository/post.html?slug=mulai-dengan-cms-advanced</link>
+    <guid>https://username.github.io/repository/post.html?slug=mulai-dengan-cms-advanced</guid>
+    <description>Cara cepat menjalankan website dinamis berbasis file dengan editor Markdown, autosave, dan workflow PR.</description>
+    <pubDate>Tue, 31 Mar 2026 09:00:00 GMT</pubDate>
+  </item>
+  <item>
+    <title>Review perubahan lewat Pull Request</title>
+    <link>https://username.github.io/repository/post.html?slug=review-via-pull-request</link>
+    <guid>https://username.github.io/repository/post.html?slug=review-via-pull-request</guid>
+    <description>Gunakan working branch agar perubahan konten bisa direview sebelum tayang di branch utama.</description>
+    <pubDate>Mon, 30 Mar 2026 10:00:00 GMT</pubDate>
+  </item>
+</channel>
+</rss>

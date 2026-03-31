@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artikel</title>
+  <meta name="description" content="Artikel detail" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="site-header container">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">GF</span>
+      <div>
+        <strong id="brandTitle">GitHub File CMS Pro</strong>
+        <small id="brandTagline">CMS tanpa database untuk GitHub Pages</small>
+      </div>
+    </a>
+    <nav class="site-nav">
+      <a href="index.html">Beranda</a>
+      <a href="admin.html">Admin</a>
+    </nav>
+  </header>
+
+  <main class="container section-gap post-layout-page">
+    <a class="back-link" href="index.html">← Kembali ke daftar artikel</a>
+    <div class="post-layout-grid">
+      <article id="postContainer" class="post-shell card"></article>
+      <aside class="post-sidebar">
+        <section class="card sticky-card toc-card">
+          <div class="card-header compact-header">
+            <div>
+              <h2>Daftar isi</h2>
+              <p>Diambil dari heading Markdown.</p>
+            </div>
+          </div>
+          <div id="tocWrap" class="toc-wrap"><div class="empty-state small-empty">Belum ada heading.</div></div>
+        </section>
+      </aside>
+    </div>
+
+    <section class="section-gap">
+      <div class="section-head">
+        <div>
+          <h2>Artikel terkait</h2>
+          <p>Diambil dari kategori yang sama.</p>
+        </div>
+      </div>
+      <div id="relatedPosts" class="posts-grid"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer container">
+    <p id="footerText">Dibuat dengan GitHub File CMS Pro</p>
+  </footer>
+
+  <script src="assets/js/utils.js"></script>
+  <script src="assets/js/post.js"></script>
+</body>
+</html>
